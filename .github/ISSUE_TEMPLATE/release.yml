@@ -1,0 +1,35 @@
+name: 🚀 Release
+description: The checklist to publish a version, once its milestone is complete
+title: "Release vX.Y.Z"
+labels: [release]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      placeholder: v0.1.0
+    validations:
+      required: true
+
+  - type: textarea
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Follows docs/WORKFLOW.md, section 6.
+      value: |
+        ### Before
+        - [ ] Every issue of the milestone is closed, or moved to the next one
+        - [ ] `main` is green
+
+        ### Release pull request (`chore/release/vX.Y.Z`)
+        - [ ] `VERSION` in `project()` of `CMakeLists.txt`
+        - [ ] `version-semver` in `vcpkg.json`
+        - [ ] `CHANGELOG.md`: `[Unreleased]` becomes `[X.Y.Z] - YYYY-MM-DD`, with a new empty `[Unreleased]` above
+        - [ ] Pull request `chore(release): vX.Y.Z` squash-merged
+
+        ### Publish
+        - [ ] Annotated tag on the release commit: `git tag -a vX.Y.Z -m "NVTools X.Y.Z"` and pushed
+        - [ ] GitHub release: `gh release create vX.Y.Z --title "NVTools X.Y.Z" --generate-notes`
+        - [ ] Milestone closed, the next one created
+    validations:
+      required: true

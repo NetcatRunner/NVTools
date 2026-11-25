@@ -1,36 +1,75 @@
 name: ✨ Feature request
-description: Suggest an idea or an improvement
+description: A new function, class or module for NVTools
 labels: [enhancement]
 body:
   - type: markdown
     attributes:
       value: |
         Thanks for the idea! The [milestones](https://github.com/NetcatRunner/NVTools/milestones) show what is already planned.
+        Decide the behaviour here, before the code: the edge cases are the hard part.
 
-  - type: textarea
-    id: problem
+  - type: dropdown
+    id: module
     attributes:
-      label: What problem does it solve?
-      description: What you are trying to do, and why NVTools does not let you do it today.
+      label: Module
+      options:
+        - string
+        - maths
+        - core (Version, Export, NVTools.hpp)
+        - A new module
     validations:
       required: true
 
   - type: textarea
-    id: solution
+    id: need
     attributes:
-      label: What would you like?
-      description: The API or the behaviour you have in mind. A code sample helps.
+      label: Need
+      description: What you are trying to do, and why NVTools does not let you do it today.
+      placeholder: Split a string on a separator without copying the pieces.
+    validations:
+      required: true
+
+  - type: textarea
+    id: api
+    attributes:
+      label: Proposed API
+      description: The header and the declarations. Paste only the code, it is shown as C++.
+      render: cpp
+      placeholder: |
+        // <NVTools/String/Split.hpp>
+        [[nodiscard]] NVTOOLS_API std::vector<std::string_view> split(std::string_view text, std::string_view separator);
+    validations:
+      required: true
+
+  - type: textarea
+    id: behaviour
+    attributes:
+      label: Behaviour and edge cases
+      description: Empty inputs, limits, errors, lifetimes (views, references), complexity.
+      placeholder: |
+        - Empty pieces are kept: split("a,,b", ",") gives {"a", "", "b"}
+        - An empty string gives an empty vector
+        - The views point into `text`: it must outlive the result
+    validations:
+      required: true
+
+  - type: textarea
+    id: criteria
+    attributes:
+      label: Acceptance criteria
+      description: The issue is done when every box is ticked. Add the examples that must work.
+      value: |
+        - [ ] `example(...)` returns `...`
+        - [ ] Edge cases above are tested
+        - [ ] `///` documentation on every public declaration
+        - [ ] Non-inline functions are marked `NVTOOLS_API`
+        - [ ] Unit tests in `tests/Unit/<Module>/`
+        - [ ] `CHANGELOG.md` entry under `[Unreleased]`
     validations:
       required: true
 
   - type: textarea
     id: alternatives
     attributes:
-      label: Alternatives you considered
-      description: Other ways to get the same result, and why they fall short.
-
-  - type: textarea
-    id: context
-    attributes:
-      label: Anything else?
-      description: Links, other libraries that do it (the standard library, Boost, Abseil…), use cases.
+      label: Alternatives considered
+      description: The standard library, Boost, Abseil, another API shape… and why they fall short.

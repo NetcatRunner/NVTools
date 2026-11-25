@@ -1,0 +1,6 @@
+# Every issue starts from a template.
+blank_issues_enabled: false
+contact_links:
+  - name: 🔒 Report a security vulnerability
+    url: https://github.com/NetcatRunner/NVTools/security/advisories/new
+    about: Privately, as SECURITY.md explains. Never in a public issue.
