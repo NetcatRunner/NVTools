@@ -1,0 +1,50 @@
+name: NVTools CI
+run-name: ${{ github.actor }} is pushing new code
+
+on:
+  push:
+    branches-ignore:
+      - 'ga-ignore-*'
+  pull_request:
+    branches-ignore:
+      - 'ga-ignore-*'
+
+jobs:
+  build:
+    name: Build & Test (${{ matrix.preset }})
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        preset: [debug, release, shared, asan]
+    env:
+      CXX: g++-14
+      VCPKG_ROOT: ${{ github.workspace }}/vcpkg
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Checkout vcpkg
+        uses: actions/checkout@v4
+        with:
+          repository: microsoft/vcpkg
+          path: vcpkg
+          fetch-depth: 0
+
+      - name: Install Ninja and bootstrap vcpkg
+        run: |
+          sudo apt-get update && sudo apt-get install -y ninja-build
+          ./vcpkg/bootstrap-vcpkg.sh -disableMetrics
+
+      - name: Cache vcpkg packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/vcpkg/archives
+          key: vcpkg-${{ runner.os }}-${{ hashFiles('vcpkg.json') }}
+
+      - name: Configure, build and test
+        timeout-minutes: 15
+        run: cmake --workflow --preset ${{ matrix.preset }}
+
+      - name: Check the install
+        run: cmake --install build/${{ matrix.preset }} --prefix install/${{ matrix.preset }}
