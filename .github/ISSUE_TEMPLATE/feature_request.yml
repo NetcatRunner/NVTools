@@ -1,0 +1,36 @@
+name: ✨ Feature request
+description: Suggest an idea or an improvement
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the idea! The [milestones](https://github.com/NetcatRunner/NVTools/milestones) show what is already planned.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does it solve?
+      description: What you are trying to do, and why NVTools does not let you do it today.
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: What would you like?
+      description: The API or the behaviour you have in mind. A code sample helps.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you considered
+      description: Other ways to get the same result, and why they fall short.
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Anything else?
+      description: Links, other libraries that do it (the standard library, Boost, Abseil…), use cases.

@@ -1,0 +1,83 @@
+name: 🐛 Bug report
+description: Something does not work as documented
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug!
+        **A security problem?** Do not open an issue: report it privately, as `SECURITY.md` explains.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: One or two sentences. The compiler error or the wrong output, if there is one.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: How to reproduce
+      description: The smallest code or the commands that show the problem.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: NVTools version
+      description: A release or a commit.
+      placeholder: v0.1.0
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - Linux
+        - Windows
+        - macOS
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: compiler
+    attributes:
+      label: Compiler and version
+      placeholder: GCC 14.2, Clang 20.1, MSVC 19.44
+    validations:
+      required: true
+
+  - type: input
+    id: build
+    attributes:
+      label: Build
+      description: The CMake preset, or the build type and whether NVTools is static or shared.
+      placeholder: debug preset / Release, shared
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: The compiler or test output. Paste it as text, not as a screenshot.
+      render: text
+
+  - type: checkboxes
+    id: searched
+    attributes:
+      label: Before you submit
+      options:
+        - label: I searched the existing issues and this one is new.
+          required: true
