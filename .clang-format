@@ -1,0 +1,72 @@
+---
+Language: Cpp
+BasedOnStyle: LLVM
+Standard: Latest
+ColumnLimit: 160
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+AccessModifierOffset: -4
+NamespaceIndentation: All
+FixNamespaceComments: false
+PointerAlignment: Left
+ReferenceAlignment: Pointer
+DerivePointerAlignment: false
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterCaseLabel: false
+  AfterClass: false
+  AfterControlStatement: Never
+  AfterEnum: false
+  AfterFunction: true
+  AfterNamespace: false
+  AfterStruct: false
+  AfterUnion: false
+  AfterExternBlock: false
+  BeforeCatch: false
+  BeforeElse: false
+  BeforeLambdaBody: false
+  BeforeWhile: false
+  IndentBraces: false
+  SplitEmptyFunction: false
+  SplitEmptyRecord: false
+  SplitEmptyNamespace: false
+AllowShortFunctionsOnASingleLine: All
+AllowShortLambdasOnASingleLine: All
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+AllowShortBlocksOnASingleLine: Never
+AllowShortCaseLabelsOnASingleLine: true
+AllowShortEnumsOnASingleLine: true
+IndentCaseLabels: true
+BreakConstructorInitializers: BeforeColon
+ConstructorInitializerIndentWidth: 4
+PackConstructorInitializers: NextLine
+BreakInheritanceList: BeforeColon
+BreakTemplateDeclarations: Leave
+Cpp11BracedListStyle: true
+InsertNewlineAtEOF: true
+LineEnding: LF
+MaxEmptyLinesToKeep: 2
+RequiresClausePosition: OwnLine
+SeparateDefinitionBlocks: Leave
+EmptyLineBeforeAccessModifier: LogicalBlock
+SpaceAfterTemplateKeyword: true
+SpacesBeforeTrailingComments: 3
+IndentPPDirectives: AfterHash
+PPIndentWidth: 2
+AlignConsecutiveMacros: Consecutive
+AlignEscapedNewlines: Left
+SortIncludes: CaseSensitive
+IncludeBlocks: Regroup
+MainIncludeChar: Any
+IncludeIsMainRegex: '(Tests|Example)?$'
+IncludeCategories:
+  - Regex: '^"'
+    Priority: 1
+  - Regex: '^<NVTools/'
+    Priority: 2
+  - Regex: '^<.*[./]'
+    Priority: 3
+  - Regex: '^<'
+    Priority: 4

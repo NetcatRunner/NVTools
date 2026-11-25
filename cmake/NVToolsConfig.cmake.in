@@ -1,0 +1,7 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+# find_dependency(<Package> CONFIG)
+
+include("${CMAKE_CURRENT_LIST_DIR}/NVToolsTargets.cmake")
+check_required_components(NVTools)
