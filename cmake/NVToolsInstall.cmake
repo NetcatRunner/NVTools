@@ -14,6 +14,11 @@ install(DIRECTORY "${PROJECT_SOURCE_DIR}/include/"
     FILES_MATCHING PATTERN "*.hpp"
 )
 
+# Generated header
+install(FILES "${PROJECT_BINARY_DIR}/generated/NVTools/VersionConfig.hpp"
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/NVTools
+)
+
 install(EXPORT NVToolsTargets
     NAMESPACE   NVTools::
     DESTINATION ${NVTOOLS_CMAKE_DIR}

@@ -16,12 +16,20 @@ if(nvtools_type STREQUAL "STATIC_LIBRARY")
     target_compile_definitions(NVTools PUBLIC NVTOOLS_STATIC)
 endif()
 
+# ── NVTools/VersionConfig.hpp (the version macros), generated from cmake/Version.hpp.in ──
+configure_file(
+    "${PROJECT_SOURCE_DIR}/cmake/Version.hpp.in"
+    "${PROJECT_BINARY_DIR}/generated/NVTools/VersionConfig.hpp"
+    @ONLY
+)
+
 # The build type, for NVTools::buildDescription().
 target_compile_definitions(NVTools PRIVATE NVTOOLS_CONFIG_NAME="$<CONFIG>")
 
 target_include_directories(NVTools
     PUBLIC
         $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
+        $<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/generated>
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
     PRIVATE
         "${PROJECT_SOURCE_DIR}/src"

@@ -1,11 +1,7 @@
 #include <NVTools/Version.hpp>
+#include <NVTools/VersionConfig.hpp>
 
 #include <string_view>
-
-#define NVTOOLS_STRINGIFY_IMPL(x) #x
-#define NVTOOLS_STRINGIFY(x)      NVTOOLS_STRINGIFY_IMPL(x)
-#define NVTOOLS_VERSION_TEXT                                                                                                                                   \
-    NVTOOLS_STRINGIFY(NVTOOLS_VERSION_MAJOR) "." NVTOOLS_STRINGIFY(NVTOOLS_VERSION_MINOR) "." NVTOOLS_STRINGIFY(NVTOOLS_VERSION_PATCH)
 
 #if defined(__clang__)
 #  define NVTOOLS_COMPILER_NAME "Clang"
@@ -21,11 +17,11 @@ namespace NVTools {
 
     std::string_view versionString() noexcept
     {
-        return NVTOOLS_VERSION_TEXT;
+        return NVTOOLS_VERSION_STRING;
     }
 
     std::string_view buildDescription() noexcept
     {
-        return "NVTools " NVTOOLS_VERSION_TEXT " (" NVTOOLS_COMPILER_NAME ", " NVTOOLS_CONFIG_NAME ")";
+        return NVTOOLS_NAME " " NVTOOLS_VERSION_STRING " (" NVTOOLS_COMPILER_NAME ", " NVTOOLS_CONFIG_NAME ")";
     }
 }
