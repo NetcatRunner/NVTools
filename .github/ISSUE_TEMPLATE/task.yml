@@ -1,0 +1,45 @@
+name: 🧹 Task
+description: "Work without a new feature: refactoring, tests, build, CI, documentation"
+body:
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      description: The type of the branch and of the pull request title.
+      options:
+        - refactor
+        - test
+        - build
+        - ci
+        - docs
+        - chore
+    validations:
+      required: true
+
+  - type: input
+    id: scope
+    attributes:
+      label: Module
+      description: The module of the branch and of the pull request title.
+      placeholder: string, core, cmake, github, repo
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: What and why
+      description: What changes, and what it improves. The why matters more than the what.
+    validations:
+      required: true
+
+  - type: textarea
+    id: criteria
+    attributes:
+      label: Done when
+      value: |
+        - [ ] ...
+        - [ ] No change of behaviour for the users (or a `CHANGELOG.md` entry)
+        - [ ] The CI is green
+    validations:
+      required: true
